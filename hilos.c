@@ -1,10 +1,11 @@
+// ./hilo para correr
 #include <pthread.h>
 #include <stdio.h>
 int saldo;
 
-void * holaHilo(void *thid){
-    printf("Hola desde un hilo\n",*((int *)thid));
-    pthread_exit(retval: NULL);
+void * holaHilo(){
+    printf("Hola desde un hilo\n");
+    pthread_exit(NULL);
 }
 
 void * incrementaSaldo(){
@@ -15,10 +16,9 @@ void * incrementaSaldo(){
 int main(){
     pthread_t t;
     saldo = 100;
-    for(int thid=1; thid<101;thid++){       
-        pthread_create(&t,NULL,holaHilo,&thid);
+    for(int i=0; i<100;i++){       
+        pthread_create(&t,NULL,holaHilo,NULL);
         pthread_create(&t,NULL,incrementaSaldo,NULL);
-        printf("Thid = %d",thid);
     }
     pthread_exit(NULL);
 }
